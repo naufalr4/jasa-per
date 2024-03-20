@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'api',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
@@ -45,12 +45,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
+        'webkonsumen' => [
+            'driver' => 'session',
+            'provider' => 'konsumens',
         ],
+
+
     ],
 
     /*
@@ -80,6 +80,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'konsumens' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Konsumen::class,
+        ],
     ],
 
     /*

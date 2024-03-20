@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Category extends Model
+{
+    use HasFactory;
+
+    protected $guarded = [];
+
+    public function Subcategory()
+    {
+        return $this->hasMany(Subcategory::class);
+    }
+    public function jasa()
+    {
+        return $this->hasMany(Jasa::class);
+    }
+}
