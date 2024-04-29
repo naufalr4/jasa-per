@@ -15,26 +15,20 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_perbaikan');
-            $table->integer('nama_jasa');
-            $table->string('nama_konsumen');
-            $table->integer('grand_total_estimasi_harga');
+            $table->integer('invoice');
+            $table->integer('id_konsumen');
+            $table->integer('grand_total');
             $table->string('status');
             $table->timestamps();
         });
 
         Schema::create('orders_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_perbaikan');
-            $table->string('nama_konsumen');
-            $table->integer('no_tlp');
-            $table->text('alamat');
-            $table->string('nama_jasa');
-            $table->string('nama_barang');
-            $table->string('kerusakan');
-            $table->string('jenis_perbaikan');
-            $table->date('tgl_perbaikan');
-            $table->integer('total_estimasi_harga');
+            $table->integer('id_order');
+            $table->integer('id_jasa');
+            $table->timestamp('tgl_perbaikan');
+            $table->integer('jumlah');
+            $table->integer('total');
             $table->timestamps();
         });
     }

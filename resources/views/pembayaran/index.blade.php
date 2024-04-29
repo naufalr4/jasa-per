@@ -18,7 +18,7 @@
                 <tr>
                     <th>No</th>
                     <th>Tanggal</th>
-                    <th>Order</th>
+                    <th>No_Order</th>
                     <th>Jumlah</th>
                     <th>No Rekening</th>
                     <th>Atas Nama</th>
@@ -121,7 +121,7 @@
                             <td>${index+1}</td>
                             <td>${tgl_lengkap}</td>
                             <td>${val.id_order}</td>
-                            <td>${val.Jumlah}</td>
+                            <td>${val.jumlah}</td>
                             <td>${val.no_rekening}</td>
                             <td>${val.atas_nama}</td>
                             <td>${val.bank}</td>

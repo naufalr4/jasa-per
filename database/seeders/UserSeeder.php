@@ -21,5 +21,21 @@ class UserSeeder extends Seeder
             'email_verified_at' => now()
 
         ]);
+
+        User::create([
+            'name' => 'teknisi1',
+            'email' => 'teknisi1@gmail.com',
+            'password' => bcrypt('123'),
+            'email_verified_at' => now()
+
+        ]);
+
+        User::create([
+            'name' => 'teknisi2',
+            'email' => 'teknisi2@admin.com',
+            'password' => bcrypt('123'),
+            'email_verified_at' => now()
+
+        ]);
     }
 }

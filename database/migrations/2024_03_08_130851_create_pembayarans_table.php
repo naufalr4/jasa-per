@@ -18,7 +18,7 @@ class CreatePembayaransTable extends Migration
             $table->integer('id_order');
             $table->integer('jumlah');
             $table->string('provinsi');
-            $table->string('kota/Kab');
+            $table->string('kota');
             $table->string('kecamatan');
             $table->string('detail_alamat');
             $table->string('no_rekening');

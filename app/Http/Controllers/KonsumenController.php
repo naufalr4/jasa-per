@@ -20,10 +20,10 @@ class KonsumenController extends Controller
      */
     public function index()
     {
-       $Konsumens = Konsumen::all();
+        $Konsumens = Konsumen::all();
 
         return response()->json([
-            'data'=> $Konsumens
+            'data' => $Konsumens
         ]);
     }
 
@@ -52,7 +52,7 @@ class KonsumenController extends Controller
             'password' => 'required',
             'konfirmasi_password' => 'required|same:password',
             'provinsi' => 'required',
-            'kota/Kab' => 'required',
+            'kota' => 'required',
             'kecamatan' => 'required',
             'alamat' => 'required',
             'no_tlp' => 'required'
@@ -60,10 +60,9 @@ class KonsumenController extends Controller
 
         if ($validator->fails()) {
             return response()->json(
-             $validator->errors(),
-            422    
+                $validator->errors(),
+                422
             );
-           
         }
 
         $input = $request->all();
@@ -115,25 +114,24 @@ class KonsumenController extends Controller
             'email' => 'required',
             'password' => 'required',
             'provinsi' => 'required',
-            'kota/Kab' => 'required',
+            'kota' => 'required',
             'kecamatan' => 'required',
             'alamat' => 'required',
             'no_tlp' => 'required'
-            
-            
+
+
         ]);
 
         if ($validator->fails()) {
             return response()->json(
-             $validator->errors(),
-            422    
+                $validator->errors(),
+                422
             );
-           
         }
 
         $input = $request->all();
 
-       
+
 
 
         $Konsumen->update($input);
@@ -152,9 +150,9 @@ class KonsumenController extends Controller
      */
     public function destroy(Konsumen $Konsumen)
     {
-     
+
         $Konsumen->delete();
-        
+
         return response()->json([
             'message' => 'success'
         ]);

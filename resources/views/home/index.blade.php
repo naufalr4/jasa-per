@@ -26,7 +26,7 @@
 
             @foreach ($categories as $category)
             <div class="col-xs-4 col-xxs-12 mb-30 promo-banner">
-                <a href="/front/#">
+                <a >
                     <img src="/uploads/{{$category->gambar}}" alt="">
                     <div class="overlay"></div>
                     <div class="promo-inner valign">
@@ -94,13 +94,6 @@
             @endforeach
         </div> <!-- end row -->
     </div>
-</section> <!-- end trendy products -->
 
-
-
-        </div>
-    </div>
-
-</section> <!-- end testimonials -->
 
 @endsection

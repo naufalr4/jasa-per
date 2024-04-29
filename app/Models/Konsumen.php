@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Konsumen extends Model
+class Konsumen extends Authenticatable
 {
     use HasFactory;
     protected $guarded = [];
@@ -13,5 +13,10 @@ class Konsumen extends Model
     public function order()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
     }
 }

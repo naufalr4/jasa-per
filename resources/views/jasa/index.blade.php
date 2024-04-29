@@ -24,6 +24,8 @@
                      <th>Nama Subkategori</th>
                      <th>nama jasa</th>
                      <th>deskripsi</th>
+                     <th>alamat</th>
+                     <th>no hp</th>
                      <th>Jam Buka</th>
                     <th>estimasi harga</th>
                     <th>Gambar</th>
@@ -76,6 +78,16 @@
                         <textarea name="deskripsi" placeholder="Deskripsi" class="form-control" cols="30" 
                         rows="10" required></textarea>
                     </div>
+                     <div class="form-group">
+                        <label for="">Alamat</label>
+                        <input type="text" class="form-control" name="alamat" 
+                        placeholder="Alamat">
+                    </div>
+                     <div class="form-group">
+                        <label for="">No HP</label>
+                        <input type="text" class="form-control" name="no_tlp" 
+                        placeholder="NO HP(WhatsApp)">
+                    </div>
                     <div class="form-group">
                         <label for="">Jam Buka</label>
                         <input type="text" class="form-control" name="Jam_Buka" 
@@ -118,11 +130,13 @@
                     data.map(function (val, index) {
                         row += `
                         <tr> 
-                            <td>${index+1}</td>
+                            <td>${val.id}</td>
                             <td>${val.category.nama_kategori}</td>
                             <td>${val.subcategory.nama_subcategory}</td>
                             <td>${val.nama_jasa}</td>
                             <td>${val.deskripsi}</td>
+                            <td>${val.alamat}</td>
+                            <td>${val.no_tlp}</td>
                             <td>${val.Jam_Buka}</td>
                             <td>${val.estimasi_harga}</td>
                             <td><img src="/uploads/${val.gambar}" width="120"></td>
@@ -167,6 +181,8 @@
                      $('select[name="id_kategori"]').val('');
                      $('input[name="nama_jasa"]').val('')
                     $('textarea[name="deskripsi"]').val('')
+                     $('input[name="alamat"]').val('')
+                      $('input[name="no_tlp"]').val('')
                     $('input[name="Jam_Buka"]').val('')
                     $('input[name="estimasi_harga"]').val('');
 
@@ -188,7 +204,7 @@
                         },
                         success : function(data){
                             if (data.success){
-                                alert('Data berhasil ditambah')
+                               
                                 location.reload();
                                 
                             }
@@ -204,9 +220,11 @@
                 $.get('/api/jasas/'+ id, function({data}){
                     $('select[name="id_subcategory"]').val(data.id_subcategory);
                      $('select[name="id_kategori"]').val(data.id_kategori);
-                     $('input[name="nama_jasa"]').val(data.nama_jasa)
-                    $('textarea[name="deskripsi"]').val(data.deskripsi)
-                    $('input[name="Jam_Buka"]').val(data.Jam_Buka)
+                     $('input[name="nama_jasa"]').val(data.nama_jasa);
+                    $('textarea[name="deskripsi"]').val(data.deskripsi);
+                    $('input[name="alamat"]').val(data.alamat);
+                    $('input[name="no_tlp"]').val(data.no_tlp);
+                    $('input[name="Jam_Buka"]').val(data.Jam_Buka);
                     $('input[name="estimasi_harga"]').val(data.estimasi_harga);
                 });
 

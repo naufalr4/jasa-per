@@ -152,20 +152,22 @@ class HomeController extends Controller
     public function checkout_orders(Request $request)
     {
         $id = DB::table('orders')->insertGetId([
+            'invoice' => date('ymds'),
             'id_konsumen' => $request->id_konsumen,
-            'id_jasa' => date('ymds'),
-            'estimasi_grand_total' => $request->grand_total,
+            'grand_total' => $request->grand_total,
             'status' => 'Baru',
-            'created_at' => date('Y-m-d H:i:s')
+            'created_at' => date('Y-m-d H:i:s'),
+
         ]);
 
         for ($i = 0; $i < count($request->id_jasa); $i++) {
-            DB::table('order_details')->insert([
+            DB::table('orders_details')->insert([
                 'id_order' => $id,
                 'id_jasa' => $request->id_jasa[$i],
-                'jumlah' => $request->jumlah[$i],
+                'tgl_perbaikan' => date('Y-m-d H:i:s'),
                 'total' => $request->total[$i],
-                'created_at' => date('Y-m-d H:i:s')
+                'created_at' => date('Y-m-d H:i:s'),
+                'jumlah' => $request->jumlah[$i],
             ]);
         }
 
@@ -210,17 +212,17 @@ class HomeController extends Controller
     public function Pembayarans(Request $request)
     {
         Pembayaran::create([
-            'id_order' => $request->id_order,
+            'id_order' => "$request->id_order",
             'id_konsumen' => Auth::guard('webkonsumen')->user()->id,
             'jumlah' => $request->jumlah,
             'provinsi' => $request->provinsi,
-            'kota/Kab' => $request->kabupaten,
-            'kecamatan' => "",
-            'alamat' => $request->detail_alamat,
+            'kota' => $request->kota,
+            'detail_alamat' => $request->detail_alamat,
             'status' => 'MENUNGGU',
             'no_rekening' => $request->no_rekening,
             'atas_nama' => $request->atas_nama,
             'bank' => $request->bank,
+            'gambar' => $request->gambar,
         ]);
 
         return redirect('/orders');

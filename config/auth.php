@@ -49,6 +49,10 @@ return [
             'driver' => 'session',
             'provider' => 'konsumens',
         ],
+        'teknisi' => [
+            'driver' => 'session',
+            'provider' => 'teknisis',
+        ],
 
 
     ],
@@ -83,6 +87,11 @@ return [
         'konsumens' => [
             'driver' => 'eloquent',
             'model' => App\Models\Konsumen::class,
+        ],
+
+        'teknisis' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Teknisi::class,
         ],
     ],
 

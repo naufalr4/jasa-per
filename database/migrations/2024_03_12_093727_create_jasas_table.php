@@ -22,7 +22,7 @@ class CreateJasasTable extends Migration
             $table->text('deskripsi');
             $table->string('Jam_Buka');
             $table->integer('estimasi_harga');
-            $table->integer('jumlah');
+
 
 
             $table->timestamps();

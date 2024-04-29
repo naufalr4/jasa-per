@@ -7,13 +7,14 @@
 <section class="section-wrap shopping-cart">
     <div class="container relative">
         <form class="form-cart">
-            <input type="hidden" name="id_member" value="{{Auth::guard('webkonsumen')->user()->id}}">
+            <input type="hidden" name="id_konsumen" value="{{Auth::guard('webkonsumen')->user()->id}}">
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-wrap mb-30">
                         <table class="shop_table cart table">
                             <thead>
                                 <tr>
+                                    
                                     <th class="jasa-name" colspan="2">jasa</th>
                                     <th class="jasa-harga">harga</th>
                                     <th class="jasa-jumlah">jumlah</th>
@@ -22,22 +23,16 @@
                             </thead>
                             <tbody>
                                 @foreach ($carts as $cart)
-                                <input type="hidden" name="id_produk[]" value="{{$cart->jasa->id}}">
+                                <input type="hidden" name="id_jasa[]" value="{{$cart->jasa->id}}">
                                 <input type="hidden" name="jumlah[]" value="{{$cart->jumlah}}">
                                 <input type="hidden" name="total[]" value="{{$cart->total}}">
                                 <tr class="cart_item">
-                                    <td class="jasa-thumbnail">
-                                        <a href="#">
-                                            <img src="/uploads/{{$cart->jasa->gambar}}" alt="">
-                                        </a>
+                                   
+                                      <td class="jasa-name">
+                                        <a href="#">{{$cart->jasa->nama_jasa}}</a>
+                                        
                                     </td>
-                                    <td class="jasa-name">
-                                        <a href="#">{{$cart->jasa->nama_barang}}</a>
-                                        <ul>
-                                            <li>Size: {{$cart->size}}</li>
-                                            <li>Color: {{$cart->color}}</li>
-                                        </ul>
-                                    </td>
+                                   <td></td>
                                     <td class="jasa-harga">
                                         <span class="amount">{{ "Rp. " . number_format($cart->jasa->estimasi_harga)}}</span>
                                     </td>
@@ -76,37 +71,8 @@
             </div> <!-- end row -->
 
             <div class="row">
-                <div class="col-md-6 shipping-calculator-form">
-                    <h2 class="heading relative uppercase bottom-line full-grey mb-30">Calculate Shipping</h2>
-                    <p class="form-row form-row-wide">
-                        <select name="provinsi" id="provinsi" class="country_to_state provinsi"
-                            rel="calc_shipping_state">
-                            <option value="">Pilih Provinsi</option>
-                            @foreach ($provinsi->rajaongkir->results as $provinsi)
-                            <option value="{{$provinsi->province_id}}">{{$provinsi->province}}</option>
-                            @endforeach
-                        </select>
-                    </p>
-                    <p class="form-row form-row-wide">
-                        <select name="kota" id="kota" class="country_to_state kota" rel="calc_shipping_state">
-
-                        </select>
-                    </p>
-
-                    <div class="row row-10">
-                        <div class="col-sm-12">
-                            <p class="form-row form-row-wide">
-                                <input type="text" class="input-text berat" placeholder="Berat" name="berat" id="Berat">
-                            </p>
-                        </div>
-                    </div>
-
-                    <p>
-                        <a href="#" name="calc_shipping" class="btn btn-lg btn-stroke mt-10 mb-mdm-40 update-total"
-                            style="padding: 20px 40px">
-                            Update Totals
-                        </a>
-                    </p>
+               
+                   
                 </div> <!-- end col shipping calculator -->
 
                 <div class="col-md-6">
@@ -121,12 +87,7 @@
                                         <span class="amount cart-total">{{$cart_total}}</span>
                                     </td>
                                 </tr>
-                                <tr class="shipping">
-                                    <th>Shipping</th>
-                                    <td>
-                                        <span class="shipping-cost">0</span>
-                                    </td>
-                                </tr>
+                               
                                 <tr class="order-total">
                                     <th>Order Total</th>
                                     <td>
@@ -134,6 +95,13 @@
                                         <strong><span class="amount grand-total">0</span></strong>
                                     </td>
                                 </tr>
+
+                                 <p>
+                        <a href="#" name="calc_shipping" class="btn btn-lg btn-stroke mt-10 mb-mdm-40 update-total"
+                            style="padding: 20px 40px">
+                            Update Totals
+                        </a>
+                    </p>
                             </tbody>
                         </table>
 
@@ -167,13 +135,13 @@
             $('.update-total').click(function(e){
                 e.preventDefault()
                 $.ajax({
-                    url : '/get_ongkir/' + $('.kota').val() + '/' + $('.berat').val(),
+                    url : '/get_ongkir/' + $('.kota').val(9) + '/' + $('.berat').val(1),
                     success : function (data){
                         data = JSON.parse(data)
 
-                        grandtotal = parseInt(data.rajaongkir.results[0].costs[0].cost[0].value) + parseInt($('.cart-total').text())
+                        grandtotal = parseInt($('.cart-total').text())
 
-                        $('.shipping-cost').text(data.rajaongkir.results[0].costs[0].cost[0].value)
+                        $('.shipping-cost').text(grandtotal)
                         $('.grand-total').text(grandtotal)
                         $('.grand_total').val(grandtotal)
                     }

@@ -84,16 +84,11 @@ class orderController extends Controller
 
         $validator = Validator::make($request->all(), [
 
-            'id_perbaikan' => 'required',
+
             'id_jasa' => 'required',
-            'nama_konsumen' => 'required',
-            'no_tlp' => 'required',
-            'nama_jasa' => 'required',
-            'nama_barang' => 'required',
-            'kerusakan' => 'required',
-            'jenis_perbaikan' => 'required',
             'tgl_perbaikan' => 'required',
-            'total_estimasi_harga' => 'required',
+            'total' => 'required',
+            'jumlah' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -109,16 +104,11 @@ class orderController extends Controller
 
         for ($i = 0; $i < count($input['id_perbaikan']); $i++) {
             OrderDetail::create([
-                'id_perbaikan' => $order['id'],
+                'id_order' => $order['id'],
                 'id_jasa' => $input['id_jasa'][$i],
-                'nama_konsumen' => $input['nama_konsumen'][$i],
-                'no_tlp' => $input['no_tlp'][$i],
-                'nama_jasa' => $input['nama_jasa'][$i],
-                'nama_barang' => $input['nama_barang'][$i],
-                'kerusakan' => $input['kerusakan'][$i],
-                'jenis_perbaikan' => $input['jenis_perbaikan'][$i],
                 'tgl_perbaikan' => $input['tgl_perbaikan'][$i],
-                'total_estimasi_harga' => $input['total_estimasi_harga'][$i],
+                'total' => $input['total'][$i],
+                'jumlah' => $input['jumlah'][$i],
             ]);
         }
         return response()->json([
@@ -161,16 +151,11 @@ class orderController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'id_perbaikan' => 'required',
+            'id_order' => 'required',
             'id_jasa' => 'required',
-            'nama_konsumen' => 'required',
-            'no_tlp' => 'required',
-            'nama_jasa' => 'required',
-            'nama_barang' => 'required',
-            'kerusakan' => 'required',
-            'jenis_perbaikan' => 'required',
             'tgl_perbaikan' => 'required',
-            'total_estimasi_harga' => 'required',
+            'total' => 'required',
+            'jumlah' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -183,20 +168,15 @@ class orderController extends Controller
         $input = $request->all();
         $order->update($input);
 
-        OrderDetail::where('id_perbaikan', $order['id'])->delete();
+        OrderDetail::where('id_order', $order['id'])->delete();
 
-        for ($i = 0; $i < count($input['id_perbaikan']); $i++) {
+        for ($i = 0; $i < count($input['id_order']); $i++) {
             OrderDetail::create([
-                'id_perbaikan' => $order['id'],
+                'id_order' => $order['id'],
                 'id_jasa' => $input['id_jasa'][$i],
-                'nama_konsumen' => $input['nama_konsumen'][$i],
-                'no_tlp' => $input['no_tlp'][$i],
-                'nama_jasa' => $input['nama_jasa'][$i],
-                'nama_barang' => $input['nama_barang'][$i],
-                'kerusakan' => $input['kerusakan'][$i],
-                'jenis_perbaikan' => $input['jenis_perbaikan'][$i],
                 'tgl_perbaikan' => $input['tgl_perbaikan'][$i],
-                'total_estimasi_harga' => $input['total_estimasi_harga'][$i],
+                'total' => $input['total'][$i],
+                'jumlah' => $input['jumlah'][$i],
             ]);
         }
 

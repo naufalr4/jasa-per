@@ -31,11 +31,11 @@ class JasaController extends Controller
      */
     public function index()
     {
-        $jasa = Jasa::with('category', 'subcategory')->get();
+        $jasas = Jasa::with('category', 'subcategory')->get();
 
 
         return response()->json([
-            'data' => $jasa
+            'data' => $jasas
         ]);
     }
 
@@ -88,11 +88,11 @@ class JasaController extends Controller
             $input['gambar'] = $nama_gambar;
         }
 
-        $jasas = Jasa::create($input);
+        $jasa = Jasa::create($input);
 
         return response()->json([
             'success' => true,
-            'data' => $jasas
+            'data' => $jasa
         ]);
     }
 

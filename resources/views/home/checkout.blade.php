@@ -10,7 +10,7 @@
 
             <div class="ecommerce col-xs-12">
 
-                <form name="checkout" class="checkout ecommerce-checkout row" method="POST" action="/payments">
+                <form name="checkout" class="checkout ecommerce-checkout row" method="POST" action="/pembayarans">
                     @csrf
                     <input type="hidden" name="id_order" value="{{$orders->id}}">
                     <div class="col-md-8" id="customer_details">
@@ -34,7 +34,7 @@
                                 <label for="billing_first_name">Kota
                                     <abbr class="required" title="required">*</abbr>
                                 </label>
-                                <select name="kabupaten" id="kota" class="country_to_state kota"
+                                <select name="kota" id="kota" class="country_to_state kota"
                                     rel="calc_shipping_state">
 
                                 </select>
@@ -58,9 +58,17 @@
                             <p class="form-row form-row-first validate-required ecommerce-invalid ecommerce-invalid-required-field"
                                 id="billing_first_name_field">
                                 <label for="billing_first_name">No Rekening
-                                    <abbr class="required" title="required">*</abbr>
+                                    
                                 </label>
                                 <input type="text" class="input-text" placeholder value name="no_rekening"
+                                    id="billing_first_name">
+                            </p>
+                             <p class="form-row form-row-first validate-required ecommerce-invalid ecommerce-invalid-required-field"
+                                id="billing_first_name_field">
+                                <label for="billing_first_name">bank
+                                    
+                                </label>
+                                <input type="text" class="input-text" placeholder value name="bank"
                                     id="billing_first_name">
                             </p>
                             <p class="form-row form-row-first validate-required ecommerce-invalid ecommerce-invalid-required-field"
@@ -69,6 +77,14 @@
                                     <abbr class="required" title="required">*</abbr>
                                 </label>
                                 <input type="text" class="input-text" placeholder value name="jumlah"
+                                    id="billing_first_name">
+                            </p>
+                             <p class="form-row form-row-first validate-required ecommerce-invalid ecommerce-invalid-required-field"
+                                id="billing_first_name_field">
+                                <label for="billing_first_name">bank
+                                    
+                                </label>
+                                <input type="file" class="input-textx" placeholder value name="gambar"
                                     id="billing_first_name">
                             </p>
 
@@ -83,7 +99,7 @@
                     <!-- Your Order -->
                     <div class="col-md-4">
                         <div class="order-review-wrap ecommerce-checkout-review-order" id="order_review">
-                            <h2 class="heading uppercase bottom-line full-grey">Orderan Kamu</h2>
+                            <h2 class="heading uppercase bottom-line full-grey"><a href="/orders">Orderan Kamu</a></h2>
                             <table class="table shop_table ecommerce-checkout-review-order-table">
                                 <tbody>
                                     <tr class="order-total">
@@ -101,21 +117,26 @@
                                 <ul class="payment_methods methods">
 
                                     <li class="payment_method_bacs">
-                                        <input id="payment_method_bacs" type="radio" class="input-radio"
-                                            name="payment_method" value="bacs" checked="checked">
-                                        <label for="payment_method_bacs">Direct Bank Transfer</label>
-                                        <div class="payment_box payment_method_bacs">
-                                            <p>Make your payment directly into our bank account. Please use your Order
-                                                ID as the payment reference. Your order wont be shipped until the funds
-                                                have cleared in our account.</p>
+                                        
+                                        <label for="payment_method_bacs"> Transfer Bank</label>
+                                        
+                                            <p>Silahkan Melakukan Pembayaran Melalui Rekening bank tertera dibawah.</p>
                                             <p>Atas Nama : {{$about->atas_nama}}</p>
                                             <p>No Rekening : {{$about->no_rekening}}</p>
-                                        </div>
+                                            <p>Bank : {{$about->bank}}</p>
+                               
+                                    </li>
+                                    <li class="payment_method_cod">
+                                       
+                                        <label for="payment_method_bacs"> COD</label>
+                                      
+                                            <p>Silahkan Melakukan Pembayaran Langsung Kepada Teknisi.</p>
+
                                     </li>
                                 </ul>
                                 <div class="form-row place-order">
                                     <input type="submit" name="ecommerce_checkout_place_order"
-                                        class="btn btn-lg btn-dark" id="place_order" value="Place order">
+                                        class="btn btn-lg btn-dark" id="place_order" value="Bayar">
                                 </div>
                             </div>
                         </div>

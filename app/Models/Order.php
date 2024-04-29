@@ -17,6 +17,7 @@ class Order extends Model
     public function jasa()
     {
         return $this->belongsTo(Jasa::class, 'id_jasa', 'id');
+        return $this->belongsTo(Jasa::class, 'nama_jasa', 'nama_jasa');
     }
 
     public function pembayaran()

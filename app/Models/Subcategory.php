@@ -14,8 +14,8 @@ class Subcategory extends Model
     {
         return $this->belongsTo(Category::class, 'id_kategori', 'id');
     }
-    public function jasa_perbaikan()
+    public function jasa()
     {
-        return $this->hasMany(jasa_perbaikan::class);
+        return $this->hasMany(jasa::class);
     }
 }

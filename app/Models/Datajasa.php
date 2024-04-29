@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jasa_Perbaikan extends Model
+class Datajasa extends Model
 {
+
     use HasFactory;
     protected $guarded = [];
 
@@ -17,9 +18,5 @@ class Jasa_Perbaikan extends Model
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class, 'id_subkategori', 'id');
-    }
-    public function order()
-    {
-        return $this->hasMany(Order::class);
     }
 }

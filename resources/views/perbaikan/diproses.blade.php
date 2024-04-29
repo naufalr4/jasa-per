@@ -21,7 +21,7 @@
                     <th>id perbaikan</th>
                     <th>Tanggal Perbaikan</th>
                     <th>Konsumen</th>
-                    <th>grand total estimasi harga</th>
+                    <th>grand total</th>
                     <th>Aksi</th>
                 </tr>
               </thead> 
@@ -68,7 +68,7 @@
                             <td>${val.id}</td>
                             <td>${date(val.created_at)}</td>
                             <td>${val.konsumen.nama_konsumen}</td>
-                            <td>${rupiah(val.total_estimasi_harga)}</td>
+                            <td>${rupiah(val.grand_total)}</td>
 
                           
                             <td>

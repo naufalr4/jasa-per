@@ -19,7 +19,7 @@ class CreateKonsumensTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('provinsi');
-            $table->string('kota/Kab');
+            $table->string('kota');
             $table->string('kecamatan');
             $table->text('alamat');
             $table->integer('no_tlp');

@@ -64,7 +64,16 @@
 
                             <div class="navbar-header flex-child">
                                 <!-- Logo -->
-                               
+                               <div class="logo-container">
+                                    <div class="logo-wrap">
+                                        <a href="/">
+                                            @php
+                                            $about = App\Models\About::first();
+                                            @endphp
+                                            <img class="logo-dark2" src="/uploads/{{$about->logo}}" alt="logo">
+                                        </a>
+                                    </div>
+                                </div>
                                 <button type="button" class="navbar-toggle" data-toggle="collapse"
                                     data-target="#navbar-collapse">
                                     <span class="sr-only">Toggle navigation</span>
@@ -99,7 +108,7 @@
                                         @endphp
 
                                         <li class="dropdown">
-                                            <a href="#">Shop</a>
+                                            <a href="#">Jasa</a>
                                             <i class="fa fa-angle-down dropdown-trigger"></i>
                                             <ul class="dropdown-menu megamenu-wide">
                                                 <li>
@@ -159,7 +168,7 @@
                                 <ul>
                                     <li class="nav-register">
                                         @if (Auth::guard('webkonsumen')->check())
-                                        <a href="/profile">{{Auth::guard('webkonsumen')->user()->nama_member}} </a>
+                                        <a href="/profile">{{Auth::guard('webkonsumen')->user()->nama_konsumen}} </a>
                                         @else
                                         <a href="/login_konsumen">Login </a>
                                         @endif
@@ -178,7 +187,7 @@
                                     </li>
                                     <li class="nav-register">
                                         @if (Auth::guard('webkonsumen')->check())
-                                        <a href="/logout_member">Logout</a>
+                                        <a href="/logout_konsumen">Logout</a>
                                         @endif
                                     </li>
                                 </ul>
@@ -202,12 +211,13 @@
                     <div class="footer-widgets">
                         <div class="row">
 
-                            <div class="col-md-2 col-md-offset-1 col-sm-6 col-xs-12">
+                            <div class="col-md-2 col-md-offset col-sm-6 col-xs-12">
                                 <div class="widget footer-links">
                                     <h5 class="widget-title bottom-line left-align grey">Information</h5>
                                     <ul class="list-no-dividers">
-                                        <li><a href="/front/#">About us</a></li>
-                                        <li><a href="/front/#">Delivery information</a></li>
+                                        <li><a href="/about">About us</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -216,32 +226,15 @@
                                 <div class="widget footer-links">
                                     <h5 class="widget-title bottom-line left-align grey">Account</h5>
                                     <ul class="list-no-dividers">
-                                        <li><a href="/front/#">My account</a></li>
-                                        <li><a href="/front/#">Order history</a></li>
+                                        <li><a href="/">My account</a></li>
+                                        <li><a href="/orders">Order history</a></li>
                                     </ul>
                                 </div>
                             </div>
 
-                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                <div class="widget footer-links">
-                                    <h5 class="widget-title bottom-line left-align grey">Useful Links</h5>
-                                    <ul class="list-no-dividers">
-                                        <li><a href="/front/#">Stores</a></li>
-                                        <li><a href="/front/#">Terms &amp; Conditions</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
 
-                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                <div class="widget footer-links">
-                                    <h5 class="widget-title bottom-line left-align grey">Service</h5>
-                                    <ul class="list-no-dividers">
-                                        <li><a href="/front/#">FAQ</a></li>
-                                        <li><a href="/front/#">Contact</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
+                          
                         </div>
                     </div>
                 </div> <!-- end container -->

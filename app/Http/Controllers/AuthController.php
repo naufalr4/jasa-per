@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Konsumen;
+use App\Models\Teknisi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,6 +15,11 @@ class AuthController extends Controller
     public function index()
     {
         return view('auth.login');
+    }
+
+    public function index_teknisi()
+    {
+        return view('auth.login_teknisi');
     }
 
     public function login(Request $request)
@@ -28,6 +34,31 @@ class AuthController extends Controller
 
         if (auth()->attempt($credentials)) {
             $token = Auth::guard('api')->attempt($credentials);
+            return response()->json([
+                'success' => 'true',
+                'message' => 'Login Berhasil',
+                'token' => $token
+            ]);
+        }
+
+        return response()->json([
+            'success' => 'false',
+            'message' => 'email atau password salah'
+        ]);
+    }
+
+    public function login_teknisi(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        $credentials = request(['email', 'password']);
+
+
+        if (auth()->attempt($credentials)) {
+            $token = Auth::guard('teknisi')->attempt($credentials);
             return response()->json([
                 'success' => 'true',
                 'message' => 'Login Berhasil',
@@ -58,7 +89,7 @@ class AuthController extends Controller
             'password' => 'required',
             'konfirmasi_password' => 'required|same:password',
             'provinsi' => 'required',
-            'kota/Kab' => 'required',
+            'kota' => 'required',
             'kecamatan' => 'required',
             'alamat' => 'required',
             'no_tlp' => 'required'
@@ -81,6 +112,7 @@ class AuthController extends Controller
         ]);
     }
 
+
     public function login_konsumen()
     {
         return view('auth.login_konsumen');
@@ -100,12 +132,11 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         $Konsumen = Konsumen::where('email', $request->email)->first();
-        if ($Konsumen) {
-            //  if (Auth::guard('webkonsumen')->attempt($credentials)) {
 
-            if (Hash::check($request->password, $Konsumen->password)) {
+        if ($Konsumen) {
+            if (Auth::guard('webkonsumen')->attempt($credentials)) {
                 $request->session()->regenerate();
-                echo "login berhasil";
+                return redirect('/');
             } else {
                 Session::flash('failed', "Password salah");
                 return redirect('/login_konsumen');
@@ -130,7 +161,7 @@ class AuthController extends Controller
             'password' => 'required',
             'konfirmasi_password' => 'required|same:password',
             'provinsi' => 'required',
-            'kota/Kab' => 'required',
+            'kota' => 'required',
             'kecamatan' => 'required',
             'alamat' => 'required',
             'no_tlp' => 'required'
@@ -154,6 +185,12 @@ class AuthController extends Controller
     {
         Session::flush();
         return redirect('/login');
+    }
+
+    public function logout_teknsi()
+    {
+        Session::flush();
+        return redirect('/login_teknisi');
     }
 
     public function logout_konsumen()

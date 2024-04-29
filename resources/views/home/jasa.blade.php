@@ -49,18 +49,7 @@
                     <div class="gallery-cell">
                         <img src="/uploads/{{$jasa->gambar}}" alt="" />
                     </div>
-                    <div class="gallery-cell">
-                        <img src="/uploads/{{$jasa->gambar}}" alt="" />
-                    </div>
-                    <div class="gallery-cell">
-                        <img src="/uploads/{{$jasa->gambar}}" alt="" />
-                    </div>
-                    <div class="gallery-cell">
-                        <img src="/uploads/{{$jasa->gambar}}" alt="" />
-                    </div>
-                    <div class="gallery-cell">
-                        <img src="/uploads/{{$jasa->gambar}}" alt="" />
-                    </div>
+                   
                 </div> <!-- end gallery thumbs -->
 
             </div> <!-- end col img slider -->
@@ -74,23 +63,23 @@
                         <a href="/jasas/{{$jasa->id_subkategori}}">{{$jasa->subcategory->nama_subcategory}}</a>
                     </li>
                     <li class="active">
-                        Catalog
+                        Jasa
                     </li>
                 </ol>
                 <h1 class="product-title">{{$jasa->nama_jasa}}</h1>
                 <span class="price">
                     <ins>
-                        <span class="amount">Rp. {{number_format($jasa->estimasi_harga)}}</span>
+                        <span class="amount">Estimasi harga Rp. {{number_format($jasa->estimasi_harga)}}</span>
                     </ins>
                 </span>
-                <p class="short-description">{{$jasa->deskripsi}}</p>
+               
 
 
                 <div class="product-actions">
                     <span>Qty:</span>
 
                     <div class="quantity buttons_added">
-                        <input type="number" step="1" min="0" value="1" title="Qty"
+                        <input type="number"  value="1" title="Qty"
                             class="input-text jumlah qty text" />
                         <div class="quantity-adjust">
                             <a href="#" class="plus">
@@ -104,7 +93,7 @@
 
                     <a href="#" class="btn btn-dark btn-lg add-to-cart"><span>Tambah Ke Keranjang</span></a>
 
-                    <a href="#" class="product-add-to-wishlist"><i class="fa fa-heart"></i></a>
+                 
                 </div>
 
                 <div class="product_meta">    
@@ -123,19 +112,16 @@
                             <div class="panel-body">
                                 {{$jasa->deskripsi}}
                             </div>
+                            <div class="panel-body">
+                               <a href=" https://wa.me/{{$jasa->no_tlp}}?text=Halo,%20saya ingin menanyakan mengenai jasa anda " </a>Silahkan Hubungi Kami Jika Ada Pertanyaan
+                            </div>
                         </div>
                     </div>
-                       
-                    </div>
                 </div>
+                
+                
 
-                <div class="socials-share clearfix">
-                    <span>Share:</span>
-                    <div class="social-icons nobase">
-                        <a href="#"><i class="fa fa-tiktok"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                    </div>
-                </div>
+              
             </div> <!-- end col product description -->
         </div> <!-- end row -->
 
@@ -149,7 +135,7 @@
         <div class="row heading-row">
             <div class="col-md-12 text-center">
                 <h2 class="heading bottom-line">
-                    Jasa Lannya
+                    Jasa Lainnya
                 </h2>
             </div>
         </div>
@@ -205,7 +191,7 @@
 <script>
     $(function(){
         $('.add-to-cart').click(function(e){
-           
+            id_konsumen = {{Auth::guard('webkonsumen')->user()->id}}
             id_jasa = {{$jasa->id}}
             jumlah = $('.jumlah').val()
             total = {{$jasa->estimasi_harga}}*jumlah

@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/output.css">
-    <title>Login Page</title>
+    <title>Halaman Login</title>
 </head>
 
 <div class="flex py-10 md:py-20 px-5 md:px-32 bg-gray-200 min-h-screen">
     <div class="flex shadow w-full flex-col-reverse lg:flex-row">
         <div class="w-full lg:w-1/2 bg-white p-10 px-5 md:px-20">
-            <h1 class="font-bold text-xl text-gray-700">Login Page</h1>
-            <p class="text-gray-600">Please login to start your session!</p>
+            <h1 class="font-bold text-xl text-gray-700">Halaman Login</h1>
+            <p class="text-gray-600">Silahkan Login Akun!</p>
 
             <br>
             @if (Session::has('errors'))
@@ -36,7 +36,7 @@
                 @csrf
                 <div class="my-3">
                     <label class="font-semibold" for="email">E-mail</label>
-                    <input type="text" placeholder="yourmail@example.com" name="email" id="email"
+                    <input type="text" placeholder="email@example.com" name="email" id="email"
                         class="block border-2 rounded-full mt-2 py-2 px-5 w-full" required>
                 </div>
                 <div class="my-3">

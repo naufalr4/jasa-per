@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/output.css">
-    <title>Register Page</title>
+    <title>Halaman Register</title>
 </head>
 
 <body>
     <div class="flex py-10 md:py-20 px-5 md:px-32 bg-gray-200 min-h-screen">
         <div class="flex shadow w-full flex-col-reverse lg:flex-row">
             <div class="w-full lg:w-1/2 bg-white p-10 px-5 md:px-20">
-                <h1 class="font-bold text-xl text-gray-700">Register Page</h1>
-                <p class="text-gray-600">Please fill all column to create your account!</p>
+                <h1 class="font-bold text-xl text-gray-700">Halaman Register</h1>
+                <p class="text-gray-600">Silahkan Isi Kolom Untuk Membuat Akun!</p>
                 <br>
                 @if (Session::has('errors'))
                 <ul>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="my-3">
                         <label class="font-semibold" for="email">E-mail</label>
-                        <input required type="text" placeholder="yourmail@example.com" name="email" id="email"
+                        <input required type="text" placeholder="email@example.com" name="email" id="email"
                             class="block border-2 rounded-full mt-2 py-2 px-5 w-full">
                     </div>
                     <div class="my-3">
@@ -57,8 +57,8 @@
                             id="provinsi" class="block border-2 rounded-full mt-2 py-2 px-5 w-full">
                     </div>
                     <div class="my-3">
-                        <label class="font-semibold" for="kota/Kab">kota/Kab</label>
-                        <input required type="text" placeholder="kota/Kab" name="kota/Kab"
+                        <label class="font-semibold" for="kota">kota/Kab</label>
+                        <input required type="text" placeholder="kota/Kab" name="kota"
                             id="kota/Kab" class="block border-2 rounded-full mt-2 py-2 px-5 w-full">
                     </div>
                     <div class="my-3">

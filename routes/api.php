@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\JasaController;
-use App\Http\Controllers\JasaPerbaikanController;
+
 use App\Http\Controllers\KonsumenController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\OrderController;
@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => 'session',
     'prefix' => 'auth'
 ], function () {
     Route::post('admin', [AuthController::class, 'login']);
